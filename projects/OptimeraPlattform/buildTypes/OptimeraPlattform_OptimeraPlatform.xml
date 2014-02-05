@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE build-type SYSTEM "../../../project-config.dtd">
+
+<build-type>
+  <name>Optimera.Platform</name>
+  <description />
+  <settings>
+    <options>
+      <option name="cleanBuild" value="true" />
+    </options>
+    <disabled-settings>
+      <setting-ref ref="RUNNER_1" />
+    </disabled-settings>
+    <parameters>
+      <param name="NG.deploy.IISSiteName" value="Optimera.Platform" />
+      <param name="NG.deploy.Password" value="Optimera13" />
+      <param name="NG.deploy.UserName" value="zf.if.atcsg.net\cnol5362204" />
+      <param name="Optimera.build.Configuration" value="Test" />
+      <param name="Optimera.Platform.DeployServiceUrl" value="https://CNOSVNO0279AP42.zf.if.atcsg.net:8172/MsDeploy.axd" />
+      <param name="Optimera.Platform.IISSiteName" value="Optimera.Platform" />
+      <param name="Optimera.Platform.IntegrationTestAssemblies" value=".\**\bin\%Optimera.build.Configuration%\*.IntegrationTests.dll" />
+      <param name="Optimera.Platform.ServiceLevelTests" value=".\**\bin\%Optimera.build.Configuration%\*.ServicesTests.dll" />
+      <param name="Optimera.PlatForm.TestAssemblyFiles" value=".\**\bin\%Optimera.build.Configuration%\*.UnitTests.dll" />
+      <param name="Optimera.SolutionFileName" value=".\Optimera.sln" />
+      <param name="Optimera.vcs.Branch" value="master" />
+      <param name="Optimera.vcs.Url" value="https://github.com/MinOptimera/Optimera.Platform.git" />
+      <param name="Optimera.WebProjectFile" value="Optimera.Services\Optimera.Services.csproj" />
+    </parameters>
+    <build-runners>
+      <runner id="RUNNER_2" name="Build test project" type="VS.Solution">
+        <parameters>
+          <param name="build-file-path" value="%Optimera.SolutionFileName%" />
+          <param name="msbuild.prop.Configuration" value="Test" />
+          <param name="msbuild_version" value="12.0" />
+          <param name="run-platform" value="x86" />
+          <param name="targets" value="Clean Rebuild" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="toolsVersion" value="12.0" />
+          <param name="vs.version" value="vs2013" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_5" name="Run unit tests" type="NUnit">
+        <parameters>
+          <param name="dotNetCoverage.NCover.HTMLReport.File.Sort" value="0" />
+          <param name="dotNetCoverage.NCover.HTMLReport.File.Type" value="1" />
+          <param name="dotNetCoverage.NCover.Reg" value="selected" />
+          <param name="dotNetCoverage.NCover.platformBitness" value="x86" />
+          <param name="dotNetCoverage.NCover.platformVersion" value="v2.0" />
+          <param name="dotNetCoverage.NCover3.Reg" value="selected" />
+          <param name="dotNetCoverage.NCover3.args" value="//ias .*" />
+          <param name="dotNetCoverage.NCover3.platformBitness" value="x86" />
+          <param name="dotNetCoverage.NCover3.platformVersion" value="v2.0" />
+          <param name="dotNetCoverage.NCover3.reporter.executable.args" value="//or FullCoverageReport:Html:{teamcity.report.path}" />
+          <param name="dotNetCoverage.PartCover.Reg" value="selected" />
+          <param name="dotNetCoverage.PartCover.includes" value="[*]*" />
+          <param name="dotNetCoverage.PartCover.platformBitness" value="x86" />
+          <param name="dotNetCoverage.PartCover.platformVersion" value="v2.0" />
+          <param name="dotNetTestRunner.Type" value="NUnit" />
+          <param name="nunit_enabled" value="checked" />
+          <param name="nunit_environment" value="v4.0" />
+          <param name="nunit_include" value="%Optimera.PlatForm.TestAssemblyFiles%" />
+          <param name="nunit_platform" value="MSIL" />
+          <param name="nunit_version" value="NUnit-2.6.3" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_8" name="Run integration tests" type="NUnit">
+        <parameters>
+          <param name="dotNetCoverage.NCover.HTMLReport.File.Sort" value="0" />
+          <param name="dotNetCoverage.NCover.HTMLReport.File.Type" value="1" />
+          <param name="dotNetCoverage.NCover.Reg" value="selected" />
+          <param name="dotNetCoverage.NCover.platformBitness" value="x86" />
+          <param name="dotNetCoverage.NCover.platformVersion" value="v2.0" />
+          <param name="dotNetCoverage.NCover3.Reg" value="selected" />
+          <param name="dotNetCoverage.NCover3.args" value="//ias .*" />
+          <param name="dotNetCoverage.NCover3.platformBitness" value="x86" />
+          <param name="dotNetCoverage.NCover3.platformVersion" value="v2.0" />
+          <param name="dotNetCoverage.NCover3.reporter.executable.args" value="//or FullCoverageReport:Html:{teamcity.report.path}" />
+          <param name="dotNetCoverage.PartCover.Reg" value="selected" />
+          <param name="dotNetCoverage.PartCover.includes" value="[*]*" />
+          <param name="dotNetCoverage.PartCover.platformBitness" value="x86" />
+          <param name="dotNetCoverage.PartCover.platformVersion" value="v2.0" />
+          <param name="dotNetTestRunner.Type" value="NUnit" />
+          <param name="nunit_enabled" value="checked" />
+          <param name="nunit_environment" value="v4.0" />
+          <param name="nunit_include" value="%Optimera.Platform.IntegrationTestAssemblies%" />
+          <param name="nunit_platform" value="MSIL" />
+          <param name="nunit_version" value="NUnit-2.6.3" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="teamcity.tests.runRiskGroupTestsFirst" value="recentlyFailed" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_7" name="Build and deploy to test server" type="VS.Solution">
+        <parameters>
+          <param name="build-file-path" value="%Optimera.WebProjectFile%" />
+          <param name="msbuild.prop.Configuration" value="Test" />
+          <param name="msbuild_version" value="12.0" />
+          <param name="run-platform" value="x86" />
+          <param name="runnerArgs"><![CDATA[/T:Package
+/P:DeployOnBuild=True
+/P:DeployTarget=MSDeployPublish
+/P:DeployIisAppPath=%NG.deploy.IISSiteName%
+/P:MsDeployServiceUrl=%Optimera.Platform.DeployServiceUrl%
+/P:AllowUntrustedCertificate=True /P:MSDeployPublishMethod=WMSvc /P:CreatePackageOnPublish=True
+/P:UserName=%NG.deploy.UserName% /P:Password=%NG.deploy.Password%]]></param>
+          <param name="targets" value="Rebuild" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="toolsVersion" value="12.0" />
+          <param name="vs.version" value="vs2013" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_9" name="Test deployed services" type="NUnit">
+        <parameters>
+          <param name="dotNetCoverage.NCover.HTMLReport.File.Sort" value="0" />
+          <param name="dotNetCoverage.NCover.HTMLReport.File.Type" value="1" />
+          <param name="dotNetCoverage.NCover.Reg" value="selected" />
+          <param name="dotNetCoverage.NCover.platformBitness" value="x86" />
+          <param name="dotNetCoverage.NCover.platformVersion" value="v2.0" />
+          <param name="dotNetCoverage.NCover3.Reg" value="selected" />
+          <param name="dotNetCoverage.NCover3.args" value="//ias .*" />
+          <param name="dotNetCoverage.NCover3.platformBitness" value="x86" />
+          <param name="dotNetCoverage.NCover3.platformVersion" value="v2.0" />
+          <param name="dotNetCoverage.NCover3.reporter.executable.args" value="//or FullCoverageReport:Html:{teamcity.report.path}" />
+          <param name="dotNetCoverage.PartCover.Reg" value="selected" />
+          <param name="dotNetCoverage.PartCover.includes" value="[*]*" />
+          <param name="dotNetCoverage.PartCover.platformBitness" value="x86" />
+          <param name="dotNetCoverage.PartCover.platformVersion" value="v2.0" />
+          <param name="dotNetTestRunner.Type" value="NUnit" />
+          <param name="nunit_enabled" value="checked" />
+          <param name="nunit_environment" value="v4.0" />
+          <param name="nunit_include" value="%Optimera.Platform.ServiceLevelTests%" />
+          <param name="nunit_platform" value="MSIL" />
+          <param name="nunit_version" value="NUnit-2.6.3" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings checkout-mode="ON_SERVER" labeling-type="NONE" labeling-pattern="build-%system.build.number%">
+      <vcs-entry-ref root-id="OptimeraPlattform_GitHubGeneric" set-label="false" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="groupCheckinsByCommitter" value="true" />
+          <param name="perCheckinTriggering" value="true" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <cleanup />
+  </settings>
+</build-type>
+

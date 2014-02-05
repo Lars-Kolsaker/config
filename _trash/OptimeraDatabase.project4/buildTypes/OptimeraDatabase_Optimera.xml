@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE build-type SYSTEM "../../../project-config.dtd">
+
+<build-type>
+  <name>Optimera</name>
+  <description />
+  <settings>
+    <options>
+      <option name="cleanBuild" value="true" />
+    </options>
+    <disabled-settings>
+      <setting-ref ref="RUNNER_1" />
+    </disabled-settings>
+    <parameters>
+      <param name="Optimera.build.Configuration" value="Debug" />
+      <param name="Optimera.PlatForm.TestAssemblyFiles" value=".\**\bin\%Optimera.build.Configuration%\*.Tests.dll" />
+      <param name="Optimera.SolutionFileName" value=".\Optimera.sln" />
+      <param name="Optimera.vcs.Branch" value="master" />
+      <param name="Optimera.vcs.Url" value="https://github.com/MinOptimera/Optimera.Platform.git" />
+    </parameters>
+    <build-runners>
+      <runner id="RUNNER_2" name="Build test project" type="VS.Solution">
+        <parameters>
+          <param name="build-file-path" value="%Optimera.SolutionFileName%" />
+          <param name="msbuild.prop.Configuration" value="%Optimera.build.Configuration%" />
+          <param name="msbuild_version" value="12.0" />
+          <param name="run-platform" value="x86" />
+          <param name="targets" value="Clean Rebuild" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="toolsVersion" value="12.0" />
+          <param name="vs.version" value="vs2013" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings checkout-mode="ON_SERVER" labeling-type="NONE" labeling-pattern="build-%system.build.number%">
+      <vcs-entry-ref root-id="OptimeraDatabase_GitHubGeneric" set-label="false" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="groupCheckinsByCommitter" value="true" />
+          <param name="perCheckinTriggering" value="true" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <cleanup />
+  </settings>
+</build-type>
+

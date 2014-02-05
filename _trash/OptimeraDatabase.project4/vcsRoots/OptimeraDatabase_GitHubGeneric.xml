@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE vcs-root SYSTEM "../../../project-config.dtd">
+
+<vcs-root type="jetbrains.git">
+  <name>GitHub generic</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PASSWORD" />
+  <param name="branch" value="%Optimera.vcs.Branch%" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="privateKeyPath" value="c:\users\" />
+  <param name="secure:passphrase" value="zxxec6d28ad1d9781afb45f46eaac1bc2a0" />
+  <param name="secure:password" value="zxxc93c36b17cd8a1c3b45f46eaac1bc2a0" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="url" value="%Optimera.vcs.Url%" />
+  <param name="username" value="Lars-Kolsaker" />
+  <param name="usernameStyle" value="USERID" />
+</vcs-root>
+

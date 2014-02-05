@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE build-type SYSTEM "../../../project-config.dtd">
+
+<build-type>
+  <name>Optimera.Portal</name>
+  <description />
+  <settings>
+    <parameters>
+      <param name="Optimera.Portal.DeployRoot" value="D:\Sites\Optimera.Portal" />
+      <param name="Optimera.vcs.Branch" value="master" />
+      <param name="Optimera.vcs.Url" value="https://github.com/MinOptimera/Optimera.Portal.git" />
+    </parameters>
+    <build-runners>
+      <runner id="RUNNER_11" name="" type="jetbrains_powershell">
+        <parameters>
+          <param name="jetbrains_powershell_bitness" value="x86" />
+          <param name="jetbrains_powershell_execution" value="STDIN" />
+          <param name="jetbrains_powershell_noprofile" value="true" />
+          <param name="jetbrains_powershell_script_code" value="xcopy %teamcity.build.checkoutDir%\client\dist %Optimera.Portal.DeployRoot%\. /S /Y" />
+          <param name="jetbrains_powershell_script_mode" value="CODE" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings checkout-mode="ON_SERVER" labeling-type="NONE" labeling-pattern="build-%system.build.number%">
+      <vcs-entry-ref root-id="OptimeraPlattform_GitHubGeneric" set-label="false" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="groupCheckinsByCommitter" value="true" />
+          <param name="perCheckinTriggering" value="true" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <cleanup />
+  </settings>
+</build-type>
+
