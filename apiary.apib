@@ -6,11 +6,11 @@ Bonnier OTT: CAPI
 # Group Android
 Android related resources
 
-## Content [/android/1.1/page/{id}]
+## Page [/android/1.1/page/{pageid}]
 
 + Parameters
 
-    + id (string, `home`) ... An unique identifier (as defined in AppGrid) of the page
+    + pageid (string, `home`) ... An unique identifier (as defined in AppGrid) of the page
 
 
 ### Get layout for a page [GET]
@@ -24,6 +24,23 @@ Android related resources
 
             { "abc": "def" }
 
+## Container [/android/1.1/page/{pageid}/container/{containerid}]
+
++ Parameters
+
+    + pageid (string, `home`) ... An unique identifier (as defined in AppGrid) of the page
+    + containerid (string, `top`) ... An unique identifier (as defined in AppGrid) of the container
+
+### Get layout for a page [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+
+    + Body
+
+            { "abc": "def" }
 
 # Group iOS
 iOs related resources
